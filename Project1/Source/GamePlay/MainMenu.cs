@@ -33,6 +33,8 @@ namespace TowersKing
 
             buttons.Add(new Button2D("2d\\SimpleBtn", new Vector2(0, 0), new Vector2(96, 32), "Fonts\\Arial16", "Play", PlayClickDel, 1));
 
+            buttons.Add(new Button2D("2d\\SimpleBtn", new Vector2(0, 0), new Vector2(96, 32), "Fonts\\Arial16", "Options", ExitClickDel, null));
+
             buttons.Add(new Button2D("2d\\SimpleBtn", new Vector2(0, 0), new Vector2(96, 32), "Fonts\\Arial16", "Exit", ExitClickDel, null));
         }
 

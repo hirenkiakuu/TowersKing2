@@ -7,7 +7,7 @@ namespace TowersKing
         public SharpEye(Vector2 POS)
             : base("2d\\sharpeye", POS, new Vector2(100, 100))
         {
-            speed = 2.0f;
+            speed = 1.0f;
         }
 
         public override void Update(Vector2 OFFSET, Player player)

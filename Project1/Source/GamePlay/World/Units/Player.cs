@@ -20,29 +20,20 @@ namespace TowersKing
             var kstate = Keyboard.GetState();
 
             if (kstate.IsKeyDown(Keys.W))
-            {
                 pos = new Vector2(pos.X, pos.Y - speed);
-            }
 
             if (kstate.IsKeyDown(Keys.S))
-            {
                 pos = new Vector2(pos.X, pos.Y + speed);
-            }
 
             if (kstate.IsKeyDown(Keys.A))
-            {
                 pos = new Vector2(pos.X - speed, pos.Y);
-            }
 
             if (kstate.IsKeyDown(Keys.D))
-            {
                 pos = new Vector2(pos.X + speed, pos.Y);
-            }
+            
 
-            if (Globals.GetDistance(new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2), pos) > 493) 
-            {
+            if (Globals.GetDistance(new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2), pos) > 493)
                 dead = true;
-            }
 
             if (kstate.IsKeyDown(Keys.Space))
                 Globals.passProjectile(new Sword(new Vector2(pos.X, pos.Y), new Vector2(100, 100), this));
@@ -57,7 +48,9 @@ namespace TowersKing
 
         public override void Attack()
         {
+            model.myModel.Dispose();
             model.myModel = Globals.content.Load<Texture2D>("2d\\characterattacking");
+            
         }
     }
 }

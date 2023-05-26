@@ -38,14 +38,9 @@ namespace TowersKing
             dead = true;
         }
 
-        public virtual void SpawnEnemy(int randInt)
+        public virtual void SpawnEnemy(int RANDINT)
         {
-            //Globals.passEnemy(new Skeletor(new Vector2(pos.X, pos.Y)));
-
-            //var rnd = new Random();
-            //var a1 = rnd.Next(0, 1);
-
-            if (randInt == 0) Globals.passEnemy(new Skeletor(new Vector2(pos.X, pos.Y)));
+            if (RANDINT == 0) Globals.passEnemy(new Skeletor(new Vector2(pos.X, pos.Y)));
             else Globals.passEnemy(new SharpEye(new Vector2(pos.X, pos.Y)));
         }
 
