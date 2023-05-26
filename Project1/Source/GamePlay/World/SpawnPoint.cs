@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace TowersKing
 {
@@ -36,7 +37,13 @@ namespace TowersKing
 
         public virtual void SpawnEnemy()
         {
-            Globals.passEnemy(new Skeletor(new Vector2(pos.X, pos.Y)));
+            //Globals.passEnemy(new Skeletor(new Vector2(pos.X, pos.Y)));
+
+            var rnd = new Random();
+            var a1 = rnd.Next(0, 10);
+
+            if (a1 == 0) Globals.passEnemy(new Skeletor(new Vector2(pos.X, pos.Y)));
+            else Globals.passEnemy(new SharpEye(new Vector2(pos.X, pos.Y)));
         }
 
         public override void Draw(Vector2 OFFSET)
