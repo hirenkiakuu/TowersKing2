@@ -16,6 +16,7 @@ namespace TowersKing
         public List<Projectile2d> projectiles = new List<Projectile2d>();
 
         public Texture2D background;
+        public Texture2D deadModel;
 
         public Vector2 offset;
 
@@ -26,6 +27,7 @@ namespace TowersKing
             ResetWorld = RESETWORLD;
 
             background = Globals.content.Load<Texture2D>("2d\\background");
+            deadModel = Globals.content.Load<Texture2D>("2d\\maincharacterdead");
 
             player = new Player("2d\\player", new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2), new Vector2(100, 100));
 
@@ -113,7 +115,8 @@ namespace TowersKing
                 spawnPoints[i].Draw(offset);
             }
 
-            player.Draw(offset);
+            if (!player.dead) player.Draw(offset);
+            else Globals.spriteBatch.Draw(deadModel, new Vector2(player.pos.X, player.pos.Y), Color.White);
 
             for (int i = 0; i < enemies.Count; i++)
             {
