@@ -28,8 +28,13 @@ namespace TowersKing
             if (Globals.GetDistance(pos, player.pos) < 15)
             {
                 player.GetHit(1);
-                dead = true;
+                pos -= new Vector2(40, 40);
             }
+        }
+
+        public virtual void ChangeScore(int SCORE)
+        {
+            GameGlobals.score += SCORE;
         }
 
     }

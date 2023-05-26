@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using vec = Microsoft.Xna.Framework;
 
 namespace TowersKing
 {
@@ -16,7 +15,7 @@ namespace TowersKing
         {
             font = Globals.content.Load<SpriteFont>("fonts\\Arial16");
 
-            healthBar = new QuantityDisplayBar(new Microsoft.Xna.Framework.Vector2(104, 40), 4, Color.Red);
+            healthBar = new QuantityDisplayBar(new Vector2(104, 40), 4, Color.Red);
 
             //resetBtn = new Button2D("2d\\SimpleBtn", new Vector2(0,0), new Vector2(96, 32), 
             //    "fonts\\Arial16", "Reset", RESET, null);
@@ -29,11 +28,21 @@ namespace TowersKing
 
         public void Draw(World WORLD)
         {
-            healthBar.Draw(new Microsoft.Xna.Framework.Vector2(20, Globals.screenHeight - 80));
+            string tempStr = "Score = " + GameGlobals.score;
+            Vector2 strDims = font.MeasureString(tempStr);
+            Globals.spriteBatch.DrawString(font, tempStr, new Vector2( 60, 60), 
+                Color.Black,
+                0.0f,
+                new Vector2(0,0),
+                1.5f,
+                new SpriteEffects(),
+                0.0f);
+
+            healthBar.Draw(new Vector2(20, Globals.screenHeight - 80));
 
             if (WORLD.player.dead)
             {
-                var tempStr = "Press Enter to restart";
+                tempStr = "Press Enter to restart!";
 
                 Globals.spriteBatch.DrawString(
                     font, 
@@ -41,7 +50,7 @@ namespace TowersKing
                     new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2), 
                     Color.Black,
                     0.0f,
-                    new vec.Vector2(0,0),
+                    new Vector2(0,0),
                     1.25f,
                     new SpriteEffects(),
                     0.0f);

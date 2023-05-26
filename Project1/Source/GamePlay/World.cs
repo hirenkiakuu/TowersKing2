@@ -33,6 +33,7 @@ namespace TowersKing
 
             Globals.passEnemy = AddEnemy;
             Globals.passProjectile = AddProjectile;
+            GameGlobals.score = 0;
 
             var rnd = new Random();
 
@@ -86,6 +87,7 @@ namespace TowersKing
 
                     if (enemies[i].dead)
                     {
+                        enemies[i].ChangeScore(1);
                         enemies.RemoveAt(i);
                         i--;
                     }
