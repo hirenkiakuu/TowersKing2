@@ -46,7 +46,7 @@ namespace TowersKing
         {
             // TODO: Add your initialization logic here
 
-            Globals.screenWidth = 1600; //1600
+            Globals.screenWidth = 1920; //1600
             Globals.screenHeight = 1080; //900
 
             graphics.PreferredBackBufferWidth = Globals.screenWidth;

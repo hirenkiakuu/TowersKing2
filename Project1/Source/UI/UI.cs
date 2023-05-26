@@ -29,7 +29,7 @@ namespace TowersKing
 
         public void Draw(World WORLD)
         {
-            healthBar.Draw(new Microsoft.Xna.Framework.Vector2(20, Globals.screenHeight - 40));
+            healthBar.Draw(new Microsoft.Xna.Framework.Vector2(20, Globals.screenHeight - 80));
 
             if (WORLD.player.dead)
             {
