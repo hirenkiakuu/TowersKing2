@@ -22,8 +22,11 @@ namespace TowersKing
             spawnTimer.UpdateTimer();
 
             if (spawnTimer.Test())
-            { 
-                SpawnEnemy();
+            {
+                var rnd = new Random();
+                var randInt = rnd.Next(0, 10);
+
+                SpawnEnemy(randInt);
                 spawnTimer.ResetToZero();
             }
 
@@ -35,14 +38,14 @@ namespace TowersKing
             dead = true;
         }
 
-        public virtual void SpawnEnemy()
+        public virtual void SpawnEnemy(int randInt)
         {
             //Globals.passEnemy(new Skeletor(new Vector2(pos.X, pos.Y)));
 
-            var rnd = new Random();
-            var a1 = rnd.Next(0, 10);
+            //var rnd = new Random();
+            //var a1 = rnd.Next(0, 1);
 
-            if (a1 == 0) Globals.passEnemy(new Skeletor(new Vector2(pos.X, pos.Y)));
+            if (randInt == 0) Globals.passEnemy(new Skeletor(new Vector2(pos.X, pos.Y)));
             else Globals.passEnemy(new SharpEye(new Vector2(pos.X, pos.Y)));
         }
 

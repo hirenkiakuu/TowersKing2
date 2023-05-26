@@ -42,7 +42,7 @@ namespace TowersKing
 
             spawnPoints.Add(new SpawnPoint("2d\\arena", new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2), new Vector2(982, 1029)));
             spawnPoints.Add(new SpawnPoint("2d\\arena", new Vector2(a1, a2), new Vector2(0, 0)));
-            spawnPoints[spawnPoints.Count - 1].spawnTimer.AddToTimer(5000);
+            spawnPoints[spawnPoints.Count - 1].spawnTimer.AddToTimer(15000);
 
             ui = new UI(ResetWorld);
         }
