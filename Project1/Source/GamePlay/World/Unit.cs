@@ -26,11 +26,6 @@ namespace TowersKing
                 dead = true;
         }
 
-        public virtual void Attack()
-        { 
-            
-        }
-
         public override void Update(Vector2 OFFSET)
         {
             base.Update(OFFSET);

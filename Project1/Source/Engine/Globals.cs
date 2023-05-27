@@ -34,6 +34,7 @@ namespace TowersKing
 
         public static PassObject passEnemy;
         public static PassObject passProjectile;
+        public static PassObject passActiveItem;
 
         public static int screenWidth;
         public static int screenHeight;

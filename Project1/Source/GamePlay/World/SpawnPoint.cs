@@ -26,6 +26,7 @@ namespace TowersKing
                 var randInt = rnd.Next(0, 10);
 
                 SpawnEnemy(randInt);
+                SpawnBonus(randInt);
                 spawnTimer.ResetToZero();
             }
 
@@ -41,6 +42,12 @@ namespace TowersKing
         {
             if (RANDINT == 0) Globals.passEnemy(new Skeletor(new Vector2(pos.X, pos.Y)));
             else Globals.passEnemy(new SharpEye(new Vector2(pos.X, pos.Y)));
+        }
+
+        public virtual void SpawnBonus(int RANDINT)
+        {
+            if (RANDINT == 0) Globals.passActiveItem(new HealingStar(new Vector2(pos.X, pos.Y)));
+            //else Globals.passBonusItem(new SharpEye(new Vector2(pos.X, pos.Y)));
         }
 
         public override void Draw(Vector2 OFFSET)

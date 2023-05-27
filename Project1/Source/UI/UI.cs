@@ -28,7 +28,7 @@ namespace TowersKing
 
         public void Draw(World WORLD)
         {
-            string tempStr = "Score = " + GameGlobals.score;
+            string tempStr = "Score: " + GameGlobals.score;
             Vector2 strDims = font.MeasureString(tempStr);
             Globals.spriteBatch.DrawString(font, tempStr, new Vector2( 60, 60), 
                 Color.Black,

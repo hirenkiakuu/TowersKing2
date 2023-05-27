@@ -14,6 +14,7 @@ namespace TowersKing
         public List<Enemy> enemies = new List<Enemy>();
         public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
         public List<Projectile2d> projectiles = new List<Projectile2d>();
+        public List<ActiveItem> activeItems = new List<ActiveItem>();
 
         public Texture2D background;
         public Texture2D deadModel;
@@ -35,16 +36,21 @@ namespace TowersKing
 
             Globals.passEnemy = AddEnemy;
             Globals.passProjectile = AddProjectile;
+            Globals.passActiveItem = AddBonus;
             GameGlobals.score = 0;
 
             var rnd = new Random();
 
             var a1 = rnd.Next(491, 982);
             var a2 = rnd.Next(514, 1028);
+            var a3 = rnd.Next(514, 1028);
 
             spawnPoints.Add(new SpawnPoint("2d\\arena", new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2), new Vector2(982, 1029)));
             spawnPoints.Add(new SpawnPoint("2d\\arena", new Vector2(a1, a2), new Vector2(0, 0)));
             spawnPoints[spawnPoints.Count - 1].spawnTimer.AddToTimer(15000);
+
+            spawnPoints.Add(new SpawnPoint("2d\\arena", new Vector2(a1, a3), new Vector2(0, 0)));
+            spawnPoints[spawnPoints.Count - 1].spawnTimer.AddToTimer(1500);
 
             ui = new UI(ResetWorld);
         }
@@ -57,6 +63,11 @@ namespace TowersKing
         public virtual void AddProjectile(object INFO)
         {
             projectiles.Add((Projectile2d)INFO);
+        }
+
+        public virtual void AddBonus(object INFO)
+        {
+            activeItems.Add((ActiveItem)INFO);
         }
 
         public virtual void Update()
@@ -94,6 +105,18 @@ namespace TowersKing
                         i--;
                     }
                 }
+
+                for (int i = 0; i < activeItems.Count; i++)
+                {
+                    activeItems[i].Update(offset, this);
+
+                    if (activeItems[i].done)
+                    {
+                        //activeItems[i].DoEffect(this);
+                        activeItems.RemoveAt(i);
+                        i--;
+                    }
+                }
             }
             else
             {
@@ -101,6 +124,7 @@ namespace TowersKing
                 {
                     ResetWorld(null);
                 }
+                
             }
 
             ui.Update(this);
@@ -127,6 +151,11 @@ namespace TowersKing
             for (int i = 0; i < projectiles.Count; i++)
             {
                 projectiles[i].Draw(offset);
+            }
+
+            for (int i = 0; i < activeItems.Count; i++)
+            {
+                activeItems[i].Draw(offset);
             }
 
             ui.Draw(this);
