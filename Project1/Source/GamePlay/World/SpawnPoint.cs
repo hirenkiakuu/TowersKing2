@@ -12,7 +12,6 @@ namespace TowersKing
 
         public SpawnPoint(string PATH, Vector2 POS, Vector2 DIMS) : base(PATH, POS, DIMS) 
         {
-            
             dead = false;
             hitDIst = 35.0f;
         }
