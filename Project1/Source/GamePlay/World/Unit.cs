@@ -18,6 +18,16 @@ namespace TowersKing
             healthMax = health;
         }
 
+        public Unit(Vector2 POS, Vector2 DIMS) : base(POS, DIMS)
+        {
+            speed = 4.0f;
+            dead = false;
+            hitDIst = 35.0f;
+
+            health = 1;
+            healthMax = health;
+        }
+
         public virtual void GetHit(float DAMAGE)
         {
             health -= DAMAGE;

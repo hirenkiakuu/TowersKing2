@@ -21,20 +21,18 @@ namespace TowersKing
         {
             if (HitSomething(WORLD.player))
             {
-                
+                if (this.myModel.Name == "2d\\healingstar")
+                    if (WORLD.player.health < 5) WORLD.player.health += 1;
                 done = true;
-                if (WORLD.player.health < 5) WORLD.player.health += 1;
             }
-
+                
+                
             
         }
 
-        public virtual void DoEffect(ActiveItem activeItem, World WORLD)
+        public virtual void HealPlayer(World WORLD)
         {
-            //if (done)
-            //{ 
-            //    if (activeItem)
-            //}
+            if (WORLD.player.health < 5) WORLD.player.health += 1;
         }   
 
         public virtual bool HitSomething(Player player)

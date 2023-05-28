@@ -16,6 +16,12 @@ namespace TowersKing
             hitDIst = 35.0f;
         }
 
+        public SpawnPoint(Vector2 POS, Vector2 DIMS) : base(POS, DIMS)
+        {
+            dead = false;
+            hitDIst = 35.0f;
+        }
+
         public override void Update(Vector2 OFFSET)
         {
             spawnTimer.UpdateTimer();

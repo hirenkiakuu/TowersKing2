@@ -14,6 +14,12 @@ namespace TowersKing
             health = 5;
         }
 
+        public Player(Vector2 POS, Vector2 DIMS) : base(POS, DIMS)
+        {
+            speed = 4.0f;
+            health = 5;
+        }
+
         public override void Update(Vector2 OFFSET)
         {
             //Управление
@@ -57,14 +63,19 @@ namespace TowersKing
             }
 
 
+            GetKilledOutsideArena();
+                
+            base.Update(OFFSET);
+        }
+
+        private void GetKilledOutsideArena()
+        {
             if (Globals.GetDistance(new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2), pos) > 493)
             {
                 dead = true;
-           
+
                 pos.Y += 10;
             }
-                
-            base.Update(OFFSET);
         }
 
         public override void Draw(Vector2 OFFSET)

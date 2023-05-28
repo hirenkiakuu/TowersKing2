@@ -4,7 +4,7 @@ namespace TowersKing
 {
     public class GamePlay
     {
-        int playState;
+        public int playState;
 
         World world;
 
@@ -28,7 +28,7 @@ namespace TowersKing
 
         public virtual void ResetWorld(object INFO)
         {
-            world = new World(ResetWorld, ChangeGameState);
+            world = new World(ResetWorld, ChangeGameState, 0);
         }
 
         public virtual void Draw()

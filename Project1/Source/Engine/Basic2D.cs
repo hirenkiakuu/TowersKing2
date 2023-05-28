@@ -35,6 +35,13 @@ namespace TowersKing
             myModel = Globals.content.Load<Texture2D>(PATH);
         }
 
+        public Basic2D(Vector2 POS, Vector2 DIMS)
+        {
+            pos = new Vector2(POS.X, POS.Y);
+            dims = new Vector2(DIMS.X, DIMS.Y);
+            rot = 0.0f;
+        }
+
         public virtual void Update(Vector2 OFFSET)
         {
 

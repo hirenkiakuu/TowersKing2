@@ -18,6 +18,7 @@ namespace TowersKing
 
         public Texture2D background;
         public Texture2D deadModel;
+        public Texture2D skeletDeadModel, sharpeyeDeadModel;
 
         public Vector2 offset;
 
@@ -29,8 +30,11 @@ namespace TowersKing
 
             background = Globals.content.Load<Texture2D>("2d\\background");
             deadModel = Globals.content.Load<Texture2D>("2d\\maincharacterdead");
+            skeletDeadModel = Globals.content.Load<Texture2D>("2d\\skeletDeadModel");
+            sharpeyeDeadModel = Globals.content.Load<Texture2D>("2d\\sharpeyeDeadModel");
 
             player = new Player("2d\\player", new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2), new Vector2(100, 100));
+
 
             offset = new Vector2(0, 0);
 
@@ -45,7 +49,7 @@ namespace TowersKing
             var a2 = rnd.Next(514, 1028);
             var a3 = rnd.Next(514, 1028);
 
-            spawnPoints.Add(new SpawnPoint("2d\\arena", new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2), new Vector2(982, 1029)));
+            spawnPoints.Add(new SpawnPoint(new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2), new Vector2(982, 1029)));
             spawnPoints.Add(new SpawnPoint("2d\\arena", new Vector2(a1, a2), new Vector2(0, 0)));
             spawnPoints[spawnPoints.Count - 1].spawnTimer.AddToTimer(15000);
 
@@ -53,6 +57,36 @@ namespace TowersKing
             spawnPoints[spawnPoints.Count - 1].spawnTimer.AddToTimer(1500);
 
             ui = new UI(ResetWorld);
+        }
+
+        public World(PassObject RESETWORLD, PassObject CHANGEGAMESTATE, int ctorNum)
+        {
+            ResetWorld = RESETWORLD;
+
+            
+
+            player = new Player(new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2), new Vector2(100, 100));
+
+
+            offset = new Vector2(0, 0);
+
+            Globals.passEnemy = AddEnemy;
+            Globals.passProjectile = AddProjectile;
+            Globals.passActiveItem = AddBonus;
+            GameGlobals.score = 0;
+
+            var rnd = new Random();
+
+            var a1 = rnd.Next(491, 982);
+            var a2 = rnd.Next(514, 1028);
+            var a3 = rnd.Next(514, 1028);
+
+            spawnPoints.Add(new SpawnPoint(new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2), new Vector2(982, 1029)));
+            spawnPoints.Add(new SpawnPoint(new Vector2(a1, a2), new Vector2(0, 0)));
+            spawnPoints[spawnPoints.Count - 1].spawnTimer.AddToTimer(15000);
+
+            spawnPoints.Add(new SpawnPoint(new Vector2(a1, a3), new Vector2(0, 0)));
+            spawnPoints[spawnPoints.Count - 1].spawnTimer.AddToTimer(1500);
         }
 
         public virtual void AddEnemy(object INFO)
@@ -67,7 +101,7 @@ namespace TowersKing
 
         public virtual void AddBonus(object INFO)
         {
-            activeItems.Add((ActiveItem)INFO);
+            activeItems.Add((HealingStar)INFO);
         }
 
         public virtual void Update()
@@ -112,7 +146,6 @@ namespace TowersKing
 
                     if (activeItems[i].done)
                     {
-                        //activeItems[i].DoEffect(this);
                         activeItems.RemoveAt(i);
                         i--;
                     }
@@ -144,7 +177,6 @@ namespace TowersKing
 
             for (int i = 0; i < enemies.Count; i++)
             {
-
                 enemies[i].Draw(offset);
             }
 
