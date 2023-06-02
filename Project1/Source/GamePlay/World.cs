@@ -11,7 +11,7 @@ namespace TowersKing
     {
         public Player player;
         public UI ui;
-        public List<Enemy> enemies = new List<Enemy>();
+        public static List<Enemy> enemies = new List<Enemy>();
         public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
         public List<Projectile2d> projectiles = new List<Projectile2d>();
         public List<ActiveItem> activeItems = new List<ActiveItem>();
@@ -70,6 +70,11 @@ namespace TowersKing
             activeItems.Add((ActiveItem)INFO);
         }
 
+        public static void WipeEnemies()
+        { 
+            enemies.Clear();
+        }
+
         public virtual void Update()
         {
             player.Update(offset);
@@ -101,6 +106,7 @@ namespace TowersKing
                     if (enemies[i].dead)
                     {
                         enemies[i].ChangeScore(1);
+                        if (GameGlobals.mana < 1) enemies[i].ChangeMana(0.2f);
                         enemies.RemoveAt(i);
                         i--;
                     }

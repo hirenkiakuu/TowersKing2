@@ -9,5 +9,6 @@ namespace TowersKing
     public class GameGlobals
     {
         public static int score = 0;
+        public static float mana = 0;
     }
 }

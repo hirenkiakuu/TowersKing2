@@ -7,7 +7,7 @@ namespace TowersKing
     public class Player : Unit
     {
         Basic2D model;
-
+       
         public Player(string PATH, Vector2 POS, Vector2 DIMS) : base(PATH, POS, DIMS)
         {
             speed = 4.0f;
@@ -35,6 +35,17 @@ namespace TowersKing
 
                 if (kstate.IsKeyDown(Keys.Space))
                     Globals.passProjectile(new Sword(new Vector2(pos.X, pos.Y), new Vector2(100, 100), this));
+
+                if (kstate.IsKeyDown(Keys.LeftShift) && GameGlobals.mana == 1)
+                {
+                    this.myModel.Name = "2d\\ability";
+                    Globals.passProjectile(new Ability(new Vector2(pos.X, pos.Y), new Vector2(100, 100), this));
+                    GameGlobals.mana = 0;
+                    World.WipeEnemies();
+                }
+
+
+                //if (Globals.mouse.LeftClick()) Globals.passProjectile();
             }
             else
             {

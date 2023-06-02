@@ -37,5 +37,10 @@ namespace TowersKing
             GameGlobals.score += SCORE;
         }
 
+        public virtual void ChangeMana(float MANA)
+        {
+            GameGlobals.mana += MANA;
+        }
+
     }
 }

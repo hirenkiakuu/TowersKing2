@@ -26,6 +26,9 @@
     <Folder Include="Content\audio\" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Content\2d\ability.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Content\2d\arena.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

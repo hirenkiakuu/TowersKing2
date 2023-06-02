@@ -8,6 +8,7 @@ namespace TowersKing
         SpriteFont font;
 
         public QuantityDisplayBar healthBar;
+        public QuantityDisplayBar manaBar;
 
         //public Button2D resetBtn; -- Возможно лишнее
 
@@ -16,6 +17,7 @@ namespace TowersKing
             font = Globals.content.Load<SpriteFont>("fonts\\Arial16");
 
             healthBar = new QuantityDisplayBar(new Vector2(104, 40), 4, Color.Red);
+            manaBar = new QuantityDisplayBar(new Vector2(104, 40), 4, Color.DarkBlue);
 
             //resetBtn = new Button2D("2d\\SimpleBtn", new Vector2(0,0), new Vector2(96, 32), 
             //    "fonts\\Arial16", "Reset", RESET, null);
@@ -24,6 +26,7 @@ namespace TowersKing
         public void Update(World WORLD)
         {
             healthBar.Update(WORLD.player.health, WORLD.player.healthMax);
+            manaBar.Update(GameGlobals.mana, 1);
         }
 
         public void Draw(World WORLD)
@@ -39,6 +42,7 @@ namespace TowersKing
                 0.0f);
 
             healthBar.Draw(new Vector2(20, Globals.screenHeight - 80));
+            manaBar.Draw(new Vector2(20, Globals.screenHeight - 140));
 
             if (WORLD.player.dead)
             {
